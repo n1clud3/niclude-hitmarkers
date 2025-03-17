@@ -3,7 +3,7 @@ local hitcolor = Color(255, 255, 255, 0)
 local speed = 800
 
 -- cl convars
-local cvarbl = CreateConVar("prsbox_hitmarkers", "0", FCVAR_ARCHIVE, "Enable hitmarkers?", 0, 1)
+local cvarbl = CreateConVar("prsbox_hitmarkers", "1", FCVAR_ARCHIVE, "Enable hitmarkers?", 0, 1)
 local scalecvar = CreateConVar("prsbox_hitmarkers_scale", "1", FCVAR_ARCHIVE, "Hitmarker scale", 1, 16)
 local farpointcvar = CreateConVar("prsbox_hitmarkers_farpoint", "8", FCVAR_ARCHIVE, "Element far point", 1, 64)
 local closepointcvar = CreateConVar("prsbox_hitmarkers_closepoint", "2", FCVAR_ARCHIVE, "Element close point", 1, 64)
@@ -130,39 +130,39 @@ cvars.AddChangeCallback("prsbox_hitmarkers_thickness", function(convar_name, val
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_simple_hit_color_r", function(convar_name, value_old, value_new)
-    simplehitcolor.r = tonumber(value_new)
+    simplehitcolor.r = tonumber(value_new) or 255
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_simple_hit_color_g", function(convar_name, value_old, value_new)
-    simplehitcolor.g = tonumber(value_new)
+    simplehitcolor.g = tonumber(value_new) or 255
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_simple_hit_color_b", function(convar_name, value_old, value_new)
-    simplehitcolor.b = tonumber(value_new)
+    simplehitcolor.b = tonumber(value_new) or 255
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_headshot_hit_color_r", function(convar_name, value_old, value_new)
-    headshothitcolor.r = tonumber(value_new)
+    headshothitcolor.r = tonumber(value_new) or 255
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_headshot_hit_color_g", function(convar_name, value_old, value_new)
-    headshothitcolor.g = tonumber(value_new)
+    headshothitcolor.g = tonumber(value_new) or 40
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_headshot_hit_color_b", function(convar_name, value_old, value_new)
-    headshothitcolor.b = tonumber(value_new)
+    headshothitcolor.b = tonumber(value_new) or 40
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_final_hit_color_r", function(convar_name, value_old, value_new)
-    finalhitcolor.r = tonumber(value_new)
+    finalhitcolor.r = tonumber(value_new) or 40
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_final_hit_color_g", function(convar_name, value_old, value_new)
-    finalhitcolor.g = tonumber(value_new)
+    finalhitcolor.g = tonumber(value_new) or 255
 end)
 
 cvars.AddChangeCallback("prsbox_hitmarkers_final_hit_color_b", function(convar_name, value_old, value_new)
-    finalhitcolor.b = tonumber(value_new)
+    finalhitcolor.b = tonumber(value_new) or 40
 end)
 
 net.Receive("PRSBOX.Hitmarkers.Netcode", NetReceived)
