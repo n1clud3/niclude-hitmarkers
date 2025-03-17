@@ -1,6 +1,6 @@
 util.PrecacheSound("prsbox/hitmarker.mp3")
 local hitcolor = Color(255, 255, 255, 0)
-local speed = 800
+local speed = 1000
 
 -- cl convars
 local cvarbl = CreateConVar("prsbox_hitmarkers", "1", FCVAR_ARCHIVE, "Enable hitmarkers?", 0, 1)

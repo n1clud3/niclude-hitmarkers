@@ -9,6 +9,11 @@ local hitmarkerType = 0
   2: death marker
 ]]--
 
+---@param ent Entity
+local function testForEnt(ent)
+    return ent:IsPlayer()
+end
+
 hook.Add("PostEntityTakeDamage", "PRSBOX.Hitmarkers.Server", function(ent, dmg, took)
     local attacker = dmg:GetAttacker()
     local h = ent:Health()
@@ -16,7 +21,7 @@ hook.Add("PostEntityTakeDamage", "PRSBOX.Hitmarkers.Server", function(ent, dmg, 
     --if ( h == ent:GetMaxHealth() ) then return end
     if ( ent:IsRagdoll() ) then return end
     if ( dmg:GetDamage() <= 0 ) then return end
-    if ( ent:IsPlayer() and ent:LastHitGroup() == HITGROUP_HEAD ) then -- if headshot then send it
+    if ( testForEnt(ent) and ent:LastHitGroup() == HITGROUP_HEAD ) then -- if headshot then send it
         hitmarkerType = 1
     end
     if ( attacker:IsPlayer() and took) then
@@ -29,7 +34,7 @@ hook.Add("PostEntityTakeDamage", "PRSBOX.Hitmarkers.Server", function(ent, dmg, 
 end)
 
 hook.Add("PlayerDeath", "PRSBOX.Hitmarkers.Server", function(victim, inflictor, attacker)
-    if not ( attacker:IsPlayer() ) then return end
+    if not ( testForEnt(attacker) ) then return end
     if ( attacker == victim ) then return end
     hitmarkerType = 2
     net.Start("PRSBOX.Hitmarkers.Netcode")
